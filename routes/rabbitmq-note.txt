@@ -1,0 +1,7 @@
+//to stop/status rabbitmq server
+rabbitmqctl stop/ status
+// to start rabbitmq server
+rabbitmq-server -detached
+// to enable plugins in rabbitmq
+rabbitmq-plugins enable rabbitmq_management // for rabbitmq management console
+rabbitmq-plugins enable rabbitmq_mqtt // for mqtt
