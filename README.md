@@ -28,4 +28,7 @@ node server.js
 	   password- guest 
 	== > Url & Port -
        AMQP - amqp://localhost:5672
-       MQTT - mqtt://localhost:1883	   
+       MQTT - mqtt://localhost:1883
+# Swagger API -
+
+    == > URL - http://localhost:3000/documentation
