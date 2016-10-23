@@ -9,17 +9,17 @@
 	  var app = angular.module('myApp', []);
 
 		 app.factory('socket', ['$rootScope', function($rootScope) {
-         var socket = io.connect();
+			  var socket = io.connect();
 
-		  return {
-			on: function(eventName, callback){
-			  socket.on(eventName, callback);
-			},
-			emit: function(eventName, data) {
-			  socket.emit(eventName, data);
-			}
-		  };
-       }])
+			  return {
+				on: function(eventName, callback){
+				  socket.on(eventName, callback);
+				},
+				emit: function(eventName, data) {
+				  socket.emit(eventName, data);
+				}
+			  };
+                }])
 		 
 	  app.controller('myCtrl',function($scope,socket,$http){
 	      $scope.message = 'Science';
