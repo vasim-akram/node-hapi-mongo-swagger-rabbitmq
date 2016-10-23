@@ -11,7 +11,8 @@ const Pack = require('./package');
 const server = new Hapi.Server();
 server.connection({
     port: 3000
-}); const io = require('socket.io')(server.listener);
+});
+const io = require('socket.io')(server.listener);
 const handler = function (request, reply) {
 
     reply.view('index', {
@@ -44,6 +45,7 @@ server.register(require('vision'), (err) => {
                       });
                  });
              });
+
 //Connect to db
 server.app.db = mongojs('127.0.0.1:27017/nodeapp', ['books','users']);
 
