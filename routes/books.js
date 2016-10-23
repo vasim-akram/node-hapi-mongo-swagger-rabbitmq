@@ -22,17 +22,16 @@ client.on('connect', function () {
 });
 
 exports.register = function (server, options, next) {
-
     const db = server.app.db;
-
+  
     server.route({
         method: 'GET',
         path: '/books',
-		config:{
-			tags:['api'],
-			description: 'Get all books',
-			notes: 'Get all books data'
-		},
+	    	config:{
+            tags:['api'],
+            description: 'Get all books',
+            notes: 'Get all books data'
+		    },
         handler: function (request, reply) {
 
             db.books.find((err, docs) => {
@@ -40,8 +39,9 @@ exports.register = function (server, options, next) {
                 if (err) {
                     return reply(Boom.wrap(err, 'Internal MongoDB error'));
                 }
-                connection.publish('amqp', payload);
-				client.publish('mqtt', JSON.stringify(payload), { qos: 0 });
+          
+                //connection.publish('amqp', payload);
+				       // client.publish('mqtt', JSON.stringify(payload), { qos: 0 });
                 reply(docs);
             });
 

@@ -18,7 +18,7 @@ exports.register = function (server, options, next) {
 		},
         handler: function (request, reply) {
 
-            db.books.find((err, docs) => {
+            db.users.find((err, docs) => {
 
                 if (err) {
                     return reply(Boom.wrap(err, 'Internal MongoDB error'));
@@ -40,7 +40,7 @@ exports.register = function (server, options, next) {
 		},
         handler: function (request, reply) {
 
-            db.books.findOne({
+            db.users.findOne({
                 _id: request.params.id
             }, (err, doc) => {
 
@@ -63,29 +63,29 @@ exports.register = function (server, options, next) {
         path: '/users',
         handler: function (request, reply) {
 
-            const book = request.payload;
+            const user = request.payload;
 
             //Create an id
-            book._id = uuid.v1();
+            user._id = uuid.v1();
 
-            db.books.save(book, (err, result) => {
+            db.users.save(user, (err, result) => {
 
                 if (err) {
                     return reply(Boom.wrap(err, 'Internal MongoDB error'));
                 }
 
-                reply(book);
+                reply(user);
             });
         },
         config: {
 			tags:['api'],
 			description: 'Save user',
-			notes: 'Save book user',
+			notes: 'Save user user',
             validate: {
                 payload: {
-                    title: Joi.string().min(10).max(50).required(),
-                    author: Joi.string().min(10).max(50).required(),
-                    isbn: Joi.number()
+                    name: Joi.string().required(),
+                    email: Joi.string().email().required(),
+                    mobile: Joi.number()
                 }
             }
         }
@@ -96,7 +96,7 @@ exports.register = function (server, options, next) {
         path: '/users/{id}',
         handler: function (request, reply) {
 
-            db.books.update({
+            db.users.update({
                 _id: request.params.id
             }, {
                 $set: request.payload
@@ -137,7 +137,7 @@ exports.register = function (server, options, next) {
 		},
         handler: function (request, reply) {
 
-            db.books.remove({
+            db.users.remove({
                 _id: request.params.id
             }, function (err, result) {
 
