@@ -25,7 +25,7 @@
 	      $scope.message = 'Science';
 		  //$scope.newMessages = [];
 		  $scope.books = [];
-		  $http.get('http://localhost:3000/books').then(function(response){
+		  $http.get('http://localhost:8080/books').then(function(response){
 		       //console.log(response.data);
 			  $scope.books=response.data;
 		  })  

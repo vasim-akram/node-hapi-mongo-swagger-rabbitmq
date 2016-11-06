@@ -1,0 +1,19 @@
+'use strict'
+
+const Server = require('./server')
+const Chai = require('chai')
+const assert = Chai.assert
+
+const reqOpts = {
+  method: 'GET',
+  url: '/books'
+}
+
+describe('Server', function () {
+  it('gives me the work', function () {
+    Server.inject(reqOpts, function (res) {
+      assert.equal(res.statusCode, 200)
+     // assert.equal(res.result, 'pokemon')
+    })
+  })
+})

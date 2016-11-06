@@ -10,7 +10,8 @@ const Pack = require('./package');
 // Create a server with a host and port
 const server = new Hapi.Server();
 server.connection({
-    port: 3000
+    port: 8080,
+    routes: { cors: true } 
 });
 const io = require('socket.io')(server.listener);
 const handler = function (request, reply) {
@@ -66,7 +67,7 @@ const options={
 			'url': 'http://www.inventum.net'
 		}
 	},
-	host: 'localhost:3000',
+	host: 'localhost:8080',
 	schemes:[
 		'http'
 	]
@@ -96,4 +97,4 @@ Vision,
 	});
 
 });
-
+module.exports = server

@@ -8,7 +8,7 @@ You should have a current version of node installed and a local MongoDB server r
 
 ```
 npm install
-node server.js
+node start
 ```
 
 # RabbitMQ Commands(For Windows) -
@@ -32,3 +32,10 @@ node server.js
 # Swagger API -
 
     == > URL - http://localhost:3000/documentation
+
+# Test with mocha & chai
+
+    run -
+	```
+	npm test
+	```

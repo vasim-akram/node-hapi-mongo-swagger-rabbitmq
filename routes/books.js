@@ -92,7 +92,7 @@ exports.register = function (server, options, next) {
                     return reply(Boom.wrap(err, 'Internal MongoDB error'));
                 }
 
-                reply(book);
+                reply(result).code(201);
             });
         },
         config: {
@@ -110,7 +110,7 @@ exports.register = function (server, options, next) {
     });
 
     server.route({
-        method: 'PATCH',
+        method: 'PUT',
         path: '/books/{id}',
         handler: function (request, reply) {
 
@@ -128,7 +128,7 @@ exports.register = function (server, options, next) {
                     return reply(Boom.notFound());
                 }
 
-                reply().code(204);
+                reply(result).code(200);
             });
         },
         config: {
@@ -151,7 +151,12 @@ exports.register = function (server, options, next) {
 		config:{
 			tags:['api'],
 			description: 'Delete book',
-			notes: 'Delete book data'
+			notes: 'Delete book data',
+      validate: {
+           params: {
+               id: Joi.string().required()
+           }
+      }
 		},
         handler: function (request, reply) {
 

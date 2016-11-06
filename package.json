@@ -8,20 +8,27 @@
   "main": "server.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/istanbul cover _mocha"
   },
   "author": "Patrick Meier",
   "license": "Apache-2.0",
   "dependencies": {
     "amqp": "^0.2.6",
     "boom": "^3.2.1",
+    "chai": "^3.5.0",
     "hapi": "^13.4.1",
     "hapi-swagger": "^7.1.0",
     "inert": "^4.0.2",
     "joi": "^8.4.2",
+    "lab": "^11.1.0",
     "mongojs": "^2.4.0",
     "mqtt": "^1.14.1",
     "node-uuid": "^1.4.7",
+    "socket.io": "^1.5.1",
     "vision": "^4.1.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2"
   }
 }
