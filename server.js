@@ -6,6 +6,7 @@ const Inert = require('inert');
 const Vision = require('vision'); 
 const hapiSwagger = require('hapi-swagger');
 const Pack = require('./package');
+var Good = require('good');
 
 // Create a server with a host and port
 const server = new Hapi.Server();
@@ -20,8 +21,10 @@ const handler = function (request, reply) {
         title: 'Hapi ' + request.server.version,
         message: 'Welcome to hapi!'
     });
-};
-
+};/*
+server.on('response', function (request) {
+    console.log(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.path + ' --> ' + request.response.statusCode);
+});*/
 server.register(require('vision'), (err) => {
 
     if (err) {
@@ -49,6 +52,44 @@ server.register(require('vision'), (err) => {
 
 //Connect to db
 server.app.db = mongojs('127.0.0.1:27017/nodeapp', ['books','users']);
+
+const logoptions = {
+    ops: {
+        interval: 1000
+    },
+    reporters: {
+        myConsoleReporter: [{
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{ log: '*', response: '*' }]
+        }, {
+            module: 'good-console'
+        }, 'stdout'],
+        myFileReporter: [{
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{ ops: '*' }]
+        }, {
+            module: 'good-squeeze',
+            name: 'SafeJson'
+        }, {
+            module: 'good-file',
+            args: ['./test/fixtures/awesome_log']
+        }],
+        myHTTPReporter: [{
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{ error: '*' }]
+        }, {
+            module: 'good-http',
+            args: ['http://prod.logs:3000', {
+                wreck: {
+                    headers: { 'x-api-key': 12345 }
+                }
+            }]
+        }]
+    }
+};
 
 const options={
 	//basePath: '/api',
@@ -81,6 +122,10 @@ server.register([
 {
    register: require('./routes/users')
 },
+{
+    register: require('good'),
+    logoptions    
+},    
 Inert,
 Vision,
 {

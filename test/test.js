@@ -5,7 +5,7 @@ const Chai = require('chai')
 const assert = Chai.assert
 let expect = Chai.expect;
 
-let bookId = '9bbc7090-a3f2-11e6-8d7f-0d4ce6988664';
+let bookId = '79924890-a59c-11e6-abf2-c90dce32787e';
 let newBookId ;
 
 describe('GET /books', () => {
