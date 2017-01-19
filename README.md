@@ -20,6 +20,9 @@ node start
     == >To enable plugins in rabbitmq
         rabbitmq-plugins enable rabbitmq_management // for rabbitmq management console
         rabbitmq-plugins enable rabbitmq_mqtt // for mqtt
+	rabbitmq-plugins enable rabbitmq_web_stomp // for web_stomp
+	
+Note - [https://github.com/beevelop/ng-stomp] , [https://github.com/JSteunou/webstomp-client] 	
 		
 # RabbitMQ Console -
       
