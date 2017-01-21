@@ -22,7 +22,7 @@ node start
         rabbitmq-plugins enable rabbitmq_mqtt // for mqtt
 	rabbitmq-plugins enable rabbitmq_web_stomp // for web_stomp
 	
-Note - [https://github.com/beevelop/ng-stomp] , [https://github.com/JSteunou/webstomp-client] 	
+Note - [stomp in angular](https://github.com/beevelop/ng-stomp) , [stomp in javascript](https://github.com/JSteunou/webstomp-client) 	
 		
 # RabbitMQ Console -
       
